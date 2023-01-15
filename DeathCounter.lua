@@ -3,6 +3,8 @@ local games = require"DeathCounterGamesList"
 local gamename = gameinfo.getromname()
 local corename = emu.getsystemid()
 
+gamename = string.gsub( gamename, ' %[.+%]', "")
+
 -- Checking for existing configuration
 
 if games[corename] == nil or games[corename][gamename] == nil then
