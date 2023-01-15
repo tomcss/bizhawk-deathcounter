@@ -18,8 +18,6 @@ local was_dead
 local death_count
 local previous_input = {}
 
-console.log( gameinfo.getromname())
-
 local function init()
     game = games[corename][gamename]
     previous_values = {}
@@ -53,16 +51,8 @@ local function parse_input()
         death_count = death_count - 1
     end
 
-    if keys["Shift+D"] and previous_input["Shift+D"] == nil then
-        console.log( keys)
-    end
-
     if keys["Shift+KeypadEnter"] and previous_input["Shift+KeypadEnter"] == nil then
         death_count = 0
-    end
-
-    if keys["P"] and previous_input["P"] == nil then
-        console.log( emu.getboardname())
     end
 
     previous_input = {}
