@@ -26,8 +26,8 @@ local function init()
         previous_values[game["reduced"]] = memory.read_u8(game["reduced"])
     end
 
-    if games[gui] == nil then
-        games[gui] = { x = 0, y = 0}
+    if games["gui"] == nil then
+        games["gui"] = { x = 0, y = 0}
     end
 
     was_dead = true
