@@ -15,7 +15,6 @@ games["NES"]["Battletoads (U)"] = {
     equals = { location = 0x01C9, value = 243},
     gui = { x = 69, y = 0}
 }
-games["NES"]["Battletoads (U) [!]"] = games["NES"]["Battletoads (U)"]
 
 -- SNES Games
 
