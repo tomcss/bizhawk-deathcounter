@@ -12,6 +12,11 @@ games["NES"]["Batman (U)"] = {
 games["NES"]["Batman (E)"] = games["NES"]["Batman (U)"]
 games["NES"]["Batman (J)"] = games["NES"]["Batman (U)"]
 
+games["NES"]["Batman Returns (E)"] = {
+    equals = { location = 0x0140, value=0 }
+}
+games["NES"]["Batman Returns (U)"] = games["NES"]["Batman Returns (E)"]
+
 games["NES"]["Battletoads (U)"] = {
     equals = { location = 0x01C9, value = 243},
     gui = { x = 69, y = 0}
