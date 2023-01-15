@@ -22,6 +22,11 @@ games["NES"]["Battletoads (U)"] = {
     gui = { x = 69, y = 0}
 }
 
+games["NES"]["Bubble Bobble (E)"] = {
+    equals = { location = 0x0031, value=128 }
+}
+games["NES"]["Bubble Bobble (U)"] = games["NES"]["Bubble Bobble (E)"]
+
 -- SNES Games
 
 games["SNES"]["Mega Man X (Europe)"] = {
