@@ -29,7 +29,21 @@ local function init()
     end
 
     if game["gui"] == nil then
-        game["gui"] = { x = 0, y = 0}
+        game["gui"] =  {
+            counter = {
+                x = 100,
+                y = 100
+            },
+            label = {
+                text = "Deaths:",
+                x = 50,
+                y = 100
+            }
+        }
+    end
+
+    if game.gui.counter.horizontal_alignment == nil then
+        game.gui.counter.horizontal_alignment = "left"
     end
 
     was_dead = true
@@ -39,7 +53,17 @@ local function init()
 end
 
 local function draw_deaths()
-    gui.drawText( game["gui"]["x"], game["gui"]["y"], "Deaths: " .. death_count, 0xFFFFFFFF, 0x00000000, 10)
+    gui.defaultBackground(0xFF0000FF)
+
+    if game.gui.label ~= nil then
+        gui.drawText( game.gui.label.x, game.gui.label.y, game.gui.label.text, 0xFFFFFFFF, 0xff000000, 10, "Arial", "regular", "center")
+    end
+
+    if game.gui.image ~= nil then
+        gui.drawImage( game.gui.image.filename, game.gui.image.x, game.gui.image.y)
+    end
+
+    gui.drawText( game.gui.counter.x, game.gui.counter.y, death_count, 0xFFFFFFFF, 0x77000000, 10, "Arial", "regular", game.gui.counter.horizontal_alignment)
 end
 
 local function parse_input()
