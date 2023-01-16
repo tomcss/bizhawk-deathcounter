@@ -27,6 +27,25 @@ games["NES"]["Bubble Bobble (E)"] = {
 }
 games["NES"]["Bubble Bobble (U)"] = games["NES"]["Bubble Bobble (E)"]
 
+games["NES"]["Castlevania II - Simon's Quest (E)"] = {
+    equals = { location = 0x00B4, value=52 },
+    gui = {
+        image = {
+            filename = "skull.png",
+            x = 40,
+            y = 10
+        },
+        label = nil,
+        counter = {
+            x = 60,
+            y = 10,
+            horizontal_alignment = "center"
+        }
+    }
+}
+games["NES"]["Castlevania II - Simon's Quest (KC)"] = games["NES"]["Castlevania II - Simon's Quest (E)"]
+games["NES"]["Castlevania II - Simon's Quest (U)"] = games["NES"]["Castlevania II - Simon's Quest (E)"]
+
 -- SNES Games
 
 games["SNES"]["Mega Man X (Europe)"] = {
