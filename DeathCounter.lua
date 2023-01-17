@@ -31,14 +31,26 @@ local function init()
     if game["gui"] == nil then
         game["gui"] =  {
             counter = {
-                x = 100,
-                y = 100
+                x = 18,
+                y = 8
             },
             label = {
-                text = "Deaths:",
+                text = "",
                 x = 50,
                 y = 100
+            },
+            image = {
+                filename = "skull.png",
+                x = 4,
+                y = 4
             }
+        }
+    end
+
+    if game.gui.counter == nil then
+        game.gui.counter = {
+            x=0,
+            y=0
         }
     end
 
@@ -53,7 +65,6 @@ local function init()
 end
 
 local function draw_deaths()
-    gui.defaultBackground(0xFF0000FF)
 
     if game.gui.label ~= nil then
         gui.drawText( game.gui.label.x, game.gui.label.y, game.gui.label.text, 0xFFFFFFFF, 0xff000000, 10, "Arial", "regular", "center")
