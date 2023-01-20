@@ -14,47 +14,39 @@ After starting the emulator, go to **Tools -> Lua Console** to open the Lua scri
 
 From there, go to **Script -> Open Script** and load the **DeathCounter** script (*not* the DeathCounterGameList script).
 
-If the Output window tells you it's preparing a death counter, that means it's working and it has support for the game you've loaded. If it tells you it can't find game data, that means your loaded game hasn't been added to the Death Counter Game List (yet).
+The output window will tell you if a configuration for this game exists or if a new configuration is created.
 
-## DeathCounterGameList.lua
+The way this plugin works is that every frame it looks for a certain memory location to contain a certain value. If that value is found at that location, that means the player died.
 
-This file contains configuration for each game that's supported.
+Finding the correct memory location and value can be a little tricky, and requires some understanding and experience using the **RAM Search** 
 
-The way the plugin works is that it looks for specific values in memory, and works out if the player has died when they change.
+## Configuring a game
 
-For games where the player has energy, this usually means looking for a specific memory location to return a value of 0 (the player has 0 energy, ergo they're dead). This isn't always 0, in Battletoads a specific memory location has the value 243 if the player has no energy left.
+If you have a found a correct memory location and value pair, press `Shift + F` to open the game configuration window. Here you can specify the memory location in the `equals memory location`, and the value to look for in the `equals value` box.
 
-For games where there the player only has lives and no energy, such as Mario, the plugin detects a decrease of value at a specific memory location.
+Clicking `Apply` will apply the configuration to the game. Clicking `Save` will save the configuration of the game into the `games/` folder.
 
-A sample game configuration looks like this:
+If you have a working new configuration, please send the game json file from the `games/` folder to me via a pm or a pull request and I'll add it to the repository.
 
-```lua
-games["NES"]["Battletoads (U)"] = {
-    equals = { location = 0x01C9, value = 243},
-    gui = { x = 69, y = 0}
-}
-```
-An `equals` property means that the plugin looks for the given `value` at the given specified `location`. If that location in memory returns that value, the plugin registers it as a death.
+## Configuring the UI
 
-The `gui` property configures the `x` and `y` offset of the **Deaths: #** text on the screen.
-```lua
-games["NES"]["Battletoads (U) [!]"] = games["NES"]["Battletoads (U)"]
-```
-Alternative versions of the ROM often have the same memory layout, so you can just assign an existing configuration to them.
+Press `Shift + F` to open the game configuration window.
 
-An example configuration of a game with lives instead of energy:
-```lua
-games["SNES"]["Super Mario World (Europe)"] = {
-    reduced = 0x0DBE
-}
-```
-The `reduced` property holds a memory location. If the value at that memory location decreases, it's registered as a death.
+`image filename` is the filename for the image to display, which by default is the skull you see next to the counter. Leaving the name empty will cause no image to be displayed.
+`image x, y` are the co-ordinates where the image is displayed.
+
+`Label` is a line of text you can have displayed on the screen (perhaps instead of an image).
+`Label x, y`are the co-ordinates where this text is displayed.
+
+`Counter x, y`are the co-ordinates of the death count number on the screen.
+
+Clicking `Apply` will apply these changes to the game. Clicking `Save` will save the configuration to file.
 
 ## Keyboard Shortcuts
-The plugin isn't perfect. When games show a demo of the gameplay, those deaths usually get recorded as well. Some games will trigger a death by initializing a new game. So sometimes you need to finetune the results a little. Luckily, we have some keyboard shortcuts to do this:
-
 | Shortcut | Action |
 |--|--|
+| `Shift + F` | Show game configuration form |
+| | |
 | `Shift + NumpadMinus` | Reduce the death counter by 1 |
 | `Shift + NumpadPlus` | Increase the death counter by 1 |
 | `Shift + NumpadEnter` | Reset the death counter to 0 |
