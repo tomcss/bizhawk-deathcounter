@@ -96,7 +96,7 @@ end
 ----------------------------------------------------------------------------
 
 local function show_form()
-    local form_handle = forms.newform(300, 600, "Death Counter Config")
+    local form_handle = forms.newform(260, 280, "Death Counter Config")
 
     local x_offset = 20
     local y_offset = 20
@@ -147,8 +147,7 @@ local function show_form()
     forms.label(
         form_handle,
         "image filename",
-        x_offset, y_offset,
-        150, 20
+        x_offset, y_offset
     )
 
     local image_filename = ""
@@ -166,15 +165,14 @@ local function show_form()
         image_filename,
         100, 20,
         nil,
-        x_offset+150, y_offset
+        x_offset+100, y_offset
     )
 
     y_offset = y_offset + 20
     forms.label(
         form_handle,
         "image x, y",
-        x_offset, y_offset,
-        150, 20
+        x_offset, y_offset
     )
 
     local image_x_handle = forms.textbox(
@@ -182,7 +180,7 @@ local function show_form()
         image_x,
         25, 25,
         "UNSIGNED",
-        x_offset+150, y_offset
+        x_offset+80, y_offset
     )
 
     local image_y_handle = forms.textbox(
@@ -190,7 +188,7 @@ local function show_form()
         image_y,
         25, 25,
         "UNSIGNED",
-        x_offset+185, y_offset
+        x_offset+115, y_offset
     )
 
     -- Label text and location config
@@ -215,7 +213,7 @@ local function show_form()
     local label_text_handle = forms.textbox(
         form_handle,
         label_text,
-        150, 20,
+        140, 20,
         nil,
         x_offset+60, y_offset
     )
@@ -230,7 +228,7 @@ local function show_form()
     local label_x_handle = forms.textbox(
         form_handle,
         label_x,
-        20, 20,
+        25, 25,
         "UNSIGNED",
         x_offset+80, y_offset
     )
@@ -238,9 +236,9 @@ local function show_form()
     local label_y_handle = forms.textbox(
         form_handle,
         label_y,
-        20, 20,
+        25, 25,
         "UNSIGNED",
-        x_offset+110, y_offset
+        x_offset+115, y_offset
     )
 
     -- Counter location config
@@ -258,17 +256,17 @@ local function show_form()
     local counter_x_handle = forms.textbox(
         form_handle,
         counter_x,
-        20, 20,
+        25, 25,
         "UNSIGNED",
-        x_offset + 100, y_offset
+        x_offset + 80, y_offset
     )
 
     local counter_y_handle = forms.textbox(
         form_handle,
         counter_y,
-        20, 20,
+        25, 25,
         "UNSIGNED",
-        x_offset + 130, y_offset
+        x_offset + 115, y_offset
     )
 
     -- Apply button and function
