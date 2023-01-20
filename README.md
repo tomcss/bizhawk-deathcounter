@@ -4,7 +4,7 @@ Death counter for the BizHawk console emulator
 
 ## About
 
-This Lua script is written for the **BizHawk** multi-system emulator. It adds a death counter on the game screen to keep track of the number of times the player has died. The death count persists through game-overs, save states and soft and hard resets (but not core resets).
+This Lua script is written for the [BizHawk](https://tasvideos.org/Bizhawk) multi-system emulator. It adds a death counter on the game screen to keep track of the number of times the player has died. The death count persists through game-overs, save states and soft and hard resets (but not core resets).
 
 ## How to use
 
@@ -17,7 +17,7 @@ The output window will tell you if a configuration for this game exists or if a 
 
 The way this plugin works is that every frame it looks for a certain memory location to contain a certain value. If that value is found at that location, that means the player died.
 
-Finding the correct memory location and value can be a little tricky, and requires some understanding and experience using the **RAM Search** 
+Finding the correct memory location and value can be a little tricky, and requires some understanding of and experience with using the [RAM Search](https://tasvideos.org/EmulatorResources/RamSearch) 
 
 ## Configuring a game
 
