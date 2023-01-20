@@ -8,8 +8,7 @@ This Lua script is written for the **BizHawk** multi-system emulator. It adds a 
 
 ## How to use
 
-Download the two Lua files and place them in the Lua subfolder of the BizHawk installation. You can also create a subfolder inside the Lua folder to place them there.
-
+Download `DeathCounter.zip` from the [releases page](https://github.com/tomcss/bizhawk-deathcounter/releases) unpack it into the Lua subfolder of the BizHawk installation. 
 After starting the emulator, go to **Tools -> Lua Console** to open the Lua script manager.
 
 From there, go to **Script -> Open Script** and load the **DeathCounter** script (*not* the DeathCounterGameList script).
