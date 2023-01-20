@@ -362,7 +362,7 @@ end
 local function draw_deaths()
 
     if game.gui.label ~= nil then
-        gui.drawText( game.gui.label.x, game.gui.label.y, game.gui.label.text, 0xFFFFFFFF, 0x00000000, 10, "Arial", "regular", "center")
+        gui.drawText( game.gui.label.x, game.gui.label.y, game.gui.label.text, 0xFFFFFFFF, 0x00000000, 10, "Arial", "regular", "left")
     end
 
     if game.gui.image ~= nil then
