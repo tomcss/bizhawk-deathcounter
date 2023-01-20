@@ -22,7 +22,6 @@ function file_exists(name)
 ------------------------
 
 local game
-local previous_values = {}
 local was_dead
 local death_count
 local previous_input = {}
@@ -94,48 +93,7 @@ local function update_equals_from_form( equalsloc_handle, equalsval_handle)
 
 end
 
-local function update_config_output(config_output_handle)
-    output = 'games["' .. corename .. '"]["' .. gamename .. '"] = {' .. eol
-
-    if game.equals ~= nil then
-        output = output .. '    equals = { location = 0x'.. string.format("%x", game.equals.location)..', value= '.. game.equals.value ..'},' .. eol
-    end
-
-    if game.gui ~= nil then
-        output = output .. '    gui = {' .. eol
-
-        if game.gui.image ~= nil then
-            output = output .. '        image = {' .. eol
-            output = output .. '            filename = "'.. game.gui.image.filename .. '",' .. eol
-            output = output .. '            x = ' .. game.gui.image.x .. ',' .. eol
-            output = output .. '            y = ' .. game.gui.image.y .. '' .. eol
-            output = output .. '        },' .. eol 
-        end
-
-        if game.gui.label ~= nil then 
-            output = output .. '        label = {' .. eol
-            output = output .. '            text = "' .. game.gui.label.text .. '",' .. eol
-            output = output .. '            x = ' .. game.gui.label.x .. ',' .. eol
-            output = output .. '            y = ' .. game.gui.label.y .. eol
-            output = output .. '        },' .. eol
-        end
-
-        if game.gui.counter ~= nil then
-            output = output .. '        counter = {' .. eol
-            output = output .. '            x = ' .. game.gui.counter.x .. ',' .. eol
-            output = output .. '            y = ' .. game.gui.counter.y .. eol
-            output = output .. '        }' .. eol
-        end
-
-        output = output .. '    }' .. eol
-
-    end
-
-    output = output .. '}' .. eol
-
-    forms.settext( config_output_handle, output)
-end
--------------------------
+----------------------------------------------------------------------------
 
 local function show_form()
     local form_handle = forms.newform(300, 600, "Death Counter Config")
@@ -180,30 +138,6 @@ local function show_form()
         equalsval,
         50, 20,
         "UNSIGNED",
-        x_offset+150, y_offset
-    )
-
-    -- Reduced value memory location config
-
-    y_offset = y_offset + 30
-
-    forms.label( 
-        form_handle,
-        "reduced location",
-        x_offset, y_offset,
-        150, 20
-    )
-
-    local reducedloc = ""
-    if game.reduced ~= nil then
-        reducedloc = string.format( "%x", game.reduced)
-    end
-
-    local reduced_handle = forms.textbox(
-        form_handle,
-        reducedloc,
-        50, 20,
-        "HEX",
         x_offset+150, y_offset
     )
 
@@ -337,18 +271,6 @@ local function show_form()
         x_offset + 130, y_offset
     )
 
-    -- Output for the config file
-
-    y_offset = y_offset + 30
-    local config_output_handle = forms.textbox(
-        form_handle,
-        "",
-        200, 200,
-        nil,
-        x_offset, y_offset,
-        true
-    )
-
     -- Apply button and function
 
     local function apply_form()
@@ -366,7 +288,7 @@ local function show_form()
         file:close()
     end
 
-    y_offset = y_offset + 230
+    y_offset = y_offset + 30
 
     local button_handle = forms.button(
         form_handle,
@@ -401,12 +323,6 @@ local function init()
             games[corename][gamename] = {}
         end
         game = games[corename][gamename]
-    end
-
-    previous_values = {}
-
-    if game["reduced"] ~= nil then
-        previous_values[game["reduced"]] = memory.read_u8(game["reduced"])
     end
 
     if game["gui"] == nil then
@@ -494,16 +410,6 @@ local function has_died()
         if value == game["equals"]["value"] then 
             death = true
         end
-    end
-
-    if game["reduced"] ~= nil then
-        local value = memory.read_u8(game["reduced"])
-
-        if value < previous_values[game["reduced"]] then
-            death = true
-        end
-
-        previous_values[game["reduced"]] = value
     end
 
     return death
