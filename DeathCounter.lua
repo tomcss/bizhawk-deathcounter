@@ -281,6 +281,10 @@ local function show_form()
     end
 
     local function save_config()
+        apply_form()
+
+        forms.destroy( form_handle)
+
         file = assert(io.open( gameconfig_filename, 'w'))
         file:write( json.encode( game))
         file:close()
