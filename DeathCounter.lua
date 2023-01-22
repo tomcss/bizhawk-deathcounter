@@ -153,7 +153,7 @@ local function show_form()
     local image_filename = ""
     local image_x = ""
     local image_y = ""
-    console.log( game.gui.image.x .. '--')
+
     if game.gui.image ~= nil then
         image_filename = game.gui.image.filename
         image_x = tonumber(game.gui.image.x)
