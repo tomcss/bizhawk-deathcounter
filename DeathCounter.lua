@@ -1,4 +1,3 @@
-local games = require("DeathCounterGamesList")
 local json = require("json")
 
 local gamename = gameinfo.getromname()
@@ -21,6 +20,7 @@ function file_exists(name)
 
 ------------------------
 
+local games
 local game
 local was_dead
 local death_count
@@ -313,6 +313,8 @@ local function init()
 
     -- Checking for existing configuration
 
+    games = {}
+
     if file_exists( gameconfig_filename) then 
         local file = assert( io.open( gameconfig_filename))
         game = json.decode( file:read())
@@ -321,6 +323,10 @@ local function init()
         if games[corename] == nil or games[corename][gamename] == nil then
             console.log( "No game data found for '"..gamename.."' on the '"..corename.."'")
             console.log( "Creating empty data")
+
+            if games[corename] == nil then
+                games[corename] = {}
+            end
         
             games[corename][gamename] = {}
         end
